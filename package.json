@@ -1,0 +1,12 @@
+{
+  "name": "serverless-fauna-todos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nivb52/serverless-fauna-todos.git",
+  "author": "niv b",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
