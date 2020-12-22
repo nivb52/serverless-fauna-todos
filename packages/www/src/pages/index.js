@@ -22,7 +22,7 @@ export default (props) => {
         <Button
           sx={{ marginTop: 2 }}
           onClick={() => {
-            auth.currentUser();
+            console.log(auth.currentUser());
           }}>
           current user
         </Button>
