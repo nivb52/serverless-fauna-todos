@@ -5,6 +5,7 @@ const useStore = create((set) => ({
   user: {},
   setUser: (user) =>
     set((state) => {
+      console.log(user);
       state.user = user;
     }),
   resetUser: () =>

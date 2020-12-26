@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Link } from '@reach/router';
 import useStore from '../store';
+// import auth from '../services/iam';
 
 const Dash = () => {
   const user = useStore((state) => state.user);

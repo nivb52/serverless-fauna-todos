@@ -5,10 +5,10 @@ import { Link } from 'gatsby';
 export default () => {
   return (
     <Flex as="nav">
-      <NavLink as={Link} to="/" p={2}>
+      <NavLink as={Link} to="/" p={3}>
         Home
       </NavLink>
-      <NavLink as={Link} to="/app" p={2}>
+      <NavLink as={Link} to="/app" p={3}>
         Dashboard
       </NavLink>
     </Flex>
