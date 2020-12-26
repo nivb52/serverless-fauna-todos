@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Container, Flex, Heading, Button } from 'theme-ui';
 import Menu from '../cmps/Menu';
 import iam from '../services/iam';
-import useUser from '../hooks/useUser';
+import useUser from '../hooks/useIam';
 // import useStore from '../store';
 
 export default (props) => {
