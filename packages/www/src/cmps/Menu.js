@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, NavLink } from 'theme-ui';
 import { Link } from 'gatsby';
 import useStore from '../store';
-
+//
 export default () => {
   const user = useStore((state) => state.user);
   return (
@@ -15,7 +15,7 @@ export default () => {
       </NavLink>
       {user && (
         <NavLink as={Link} to="/" p={2}>
-          {user?.user_metadata?.full_name}
+          {user.user_metadata?.full_name}
         </NavLink>
       )}
     </Flex>

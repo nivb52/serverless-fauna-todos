@@ -1,18 +1,25 @@
-// import React, { useContext } from 'react';
-// import { Router, Link } from '@reach/router';
-// import { IdentityContext } from '../../identity-context';
+import React from 'react';
+import useStore from '../store';
+
 // const Dashboard = () => {
-//   const { user } = useContext(IdentityContext);
-//   return;
-//   <div>
-//     <h2>Dashboard</h2>
-//   </div>;
+//   const user = useStore((state) => state.user);
+//   return (
+//     <div>
+//       <h2>Dashboard</h2>
+//     </div>
+//   );
 // };
 
-// const App = ({ children }) => (
-//   <Router>
-//     <Dashboard path="/app" />
-//   </Router>
-// );
+const App = ({ children }) => {
+  const user = useStore((state) => state.user);
 
-// export default App;
+  return (
+    <div>
+      <h2>
+        Dashboard <span>{user}</span>
+      </h2>
+    </div>
+  );
+};
+
+export default App;
