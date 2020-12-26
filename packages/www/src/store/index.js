@@ -1,7 +1,7 @@
 /* eslint-disable */
 import create from 'zustand';
 
-const useStore = create((set) => ({
+const useStore = create((set, get) => ({
   user: {},
   setUser: (user) =>
     set((state) => {
@@ -13,6 +13,9 @@ const useStore = create((set) => ({
       user: {
       }
     }),
+  getUserFullName: () => {
+    return get().user.user_metadata.full_name;
+  },
   todos: [],
   addTodo: (todo) => set((state) => ({ todos: state.todos.push(todo) })),
   resetTodos: () => set({ todos: [] }),

@@ -4,11 +4,10 @@ import { Router, Link } from '@reach/router';
 import { Container, Flex, Heading, Button, NavLink } from 'theme-ui';
 import useStore from '../store';
 import iam from '../services/iam';
+import useUser from '../hooks/useIam';
 
-let Dash = () => {
-  const user = useStore((state) => state.user);
-  let full_name;
-  if (user && user.user_metadata) full_name = user.user_metadata.full_name;
+let Dash = ({ fullName }) => {
+  let full_name = fullName;
 
   return (
     <Container>
@@ -26,11 +25,14 @@ let Dash = () => {
   );
 };
 
-let DashLoggedOut = (props) => {
+let DashLoggedOut = ({ fullName }) => {
+  let full_name = fullName;
+
   return (
     <Container>
       <Flex sx={{ flexDirection: 'column', padding: 3 }}>
         <Heading as="h1">Get Stuff Done</Heading>
+        {full_name && <span> - {full_name}</span>}
         <Button
           sx={{ marginTop: 2 }}
           onClick={() => {
@@ -44,18 +46,20 @@ let DashLoggedOut = (props) => {
 };
 
 const App = ({ children }) => {
-  const user = useStore((state) => state.user);
+  useUser();
+  const user = useStore.subscribe((console.log, (state) => state.user));
+  const fullName = iam.getUserFullName;
   if (!user) {
     return (
       <Router>
-        <DashLoggedOut path="/app" />
+        <DashLoggedOut path="/app" fullName={fullName} />
       </Router>
     );
   }
 
   return (
     <Router>
-      <Dash path="/app" />
+      <Dash path="/app" fullName={fullName} />
     </Router>
   );
 };
