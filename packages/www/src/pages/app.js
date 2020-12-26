@@ -1,26 +1,26 @@
 import React from 'react';
+import { render } from 'react-dom';
+import { Router, Link } from '@reach/router';
 import useStore from '../store';
 
-// const Dashboard = () => {
-//   const user = useStore((state) => state.user);
-//   return (
-//     <div>
-//       <h2>Dashboard</h2>
-//     </div>
-//   );
-// };
+const Dash = () => {
+  const user = useStore((state) => state.user);
+  let full_name;
+  if (user) full_name = user?.user_metadata?.full_name;
+
+  return (
+    <div>
+      <h2>Dashboard {full_name && <span> - {full_name}</span>}</h2>
+    </div>
+  );
+};
 
 const App = ({ children }) => {
   const user = useStore((state) => state.user);
-  let full_name;
-  if (user) full_name = user_metadata.full_name;
   return (
-    <div>
-      <h2>
-        Dashboard
-        <span>{full_name}</span>
-      </h2>
-    </div>
+    <Router>
+      <Dash path="/app" />
+    </Router>
   );
 };
 

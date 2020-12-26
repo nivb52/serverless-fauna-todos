@@ -1,6 +1,5 @@
 /* eslint-disable */
 import create from 'zustand';
-// import todos from '../services/todos/index';
 
 const useStore = create((set) => ({
   user: {},
