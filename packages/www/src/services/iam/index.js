@@ -1,3 +1,20 @@
-import netlifyIdentity from 'netlify-identity-widget';
+const netlifyIdentity = require('netlify-identity-widget');
 
-export default netlifyIdentity;
+const handler = {
+  get: function (target, prop, receiver) {
+    if (prop === 'init') {
+      console.log('init iam service');
+    } else if (prop === 'login') {
+      console.log(prop);
+    } else if (prop === 'logout') {
+    }
+    try {
+      return Reflect.get(...arguments);
+    } catch (e) {
+      console.log('error while trying to login ', e);
+    }
+  },
+};
+
+const iam = new Proxy(netlifyIdentity, handler);
+export default iam;
