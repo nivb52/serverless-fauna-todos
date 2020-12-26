@@ -5,14 +5,9 @@ const handler = {
     if (prop === 'init') {
       console.log('init iam service');
     } else if (prop === 'login') {
-      console.log(prop);
     } else if (prop === 'logout') {
     }
-    try {
-      return Reflect.get(...arguments);
-    } catch (e) {
-      console.log('error while trying to login ', e);
-    }
+    return Reflect.get(...arguments);
   },
 };
 

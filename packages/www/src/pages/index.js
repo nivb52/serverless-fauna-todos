@@ -2,21 +2,11 @@ import React, { useEffect } from 'react';
 import { Container, Flex, Heading, Button } from 'theme-ui';
 import Menu from '../cmps/Menu';
 import iam from '../services/iam';
-
-import useStore from '../store';
+import useUser from '../hooks/useUser';
+// import useStore from '../store';
 
 export default (props) => {
-  const login = useStore((state) => state.setUser);
-  const logout = useStore((state) => state.setUser);
-
-  useEffect(() => {
-    iam.init({});
-    iam.on('login', (user) => {
-      console.clear();
-      console.log('login', user);
-      login(user);
-    });
-  });
+  useUser();
 
   return (
     <Container>

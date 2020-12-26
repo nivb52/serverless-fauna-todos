@@ -7,7 +7,7 @@ import useStore from '../store';
 const Dash = () => {
   const user = useStore((state) => state.user);
   let full_name;
-  if (user) full_name = user?.user_metadata?.full_name;
+  if (user && user.user_metadata) full_name = user.user_metadata.full_name;
 
   return (
     <div>
