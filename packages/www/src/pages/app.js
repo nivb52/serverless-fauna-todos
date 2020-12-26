@@ -12,11 +12,12 @@ import useStore from '../store';
 
 const App = ({ children }) => {
   const user = useStore((state) => state.user);
-
+  if (user) const { full_name } = user_metadata;
   return (
     <div>
       <h2>
-        Dashboard <span>{user}</span>
+        Dashboard
+        <span>{full_name}</span>
       </h2>
     </div>
   );
