@@ -12,7 +12,8 @@ import useStore from '../store';
 
 const App = ({ children }) => {
   const user = useStore((state) => state.user);
-  if (user) const { full_name } = user_metadata;
+  let full_name;
+  if (user) full_name = user_metadata.full_name;
   return (
     <div>
       <h2>
