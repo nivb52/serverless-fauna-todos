@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Flex, Heading, Button } from 'theme-ui';
 import iam from '../services/iam';
 
-export let DashLogin = ({ fullName, padding = 0 }) => {
+export let DashLoggedOut = ({ fullName, padding = 0 }) => {
   let full_name = fullName;
 
   return (
@@ -21,13 +21,10 @@ export let DashLogin = ({ fullName, padding = 0 }) => {
   );
 };
 
-export let DashLoggedOut = ({ fullName, padding = 0 }) => {
-  let full_name = fullName;
-
+export let DashLogin = ({ padding = 0 }) => {
   return (
     <Container>
       <Flex sx={{ flexDirection: 'column', padding }}>
-        {full_name && <span> - {full_name}</span>}
         <Button
           sx={{ marginTop: 2 }}
           onClick={() => {

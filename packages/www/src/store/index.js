@@ -1,6 +1,6 @@
 /* eslint-disable */
 import create from 'zustand';
-
+// @todo set store as vanila
 const useStore = create((set, get) => ({
   user: {},
   setUser: (user) =>

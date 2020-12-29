@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Router, Link } from '@reach/router';
 import useStore from '../store';
 import iam from '../services/iam';
@@ -6,15 +6,19 @@ import useUser from '../hooks/useIam';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 
 const App = ({ children }) => {
-  useUser();
-  const user = useStore.subscribe((console.log, (state) => state.user));
-  const fullName = iam.getUserFullName;
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
+  useUser();
+  [user, setUser] = useState;
+
+  let store_user = useStore.subscribe((setUser, (state) => state.user));
+  const fullName = iam.getUserFullName;
+  console.log({ store_user });
+  console.log({ user });
 
   if (!user) {
     return (
       <Router>
-        <DashLogin path="/app" fullName={fullName} />
+        <DashLogin path="/app" />
       </Router>
     );
   }
