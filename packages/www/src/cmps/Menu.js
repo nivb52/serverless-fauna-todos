@@ -14,6 +14,7 @@ export default () => {
   const full_name = userFullName;
   subscribeUser();
   console.log({ user });
+  console.log({ useStore: useStore.user });
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
