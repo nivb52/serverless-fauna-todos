@@ -21,7 +21,7 @@ const App = ({ children }) => {
 
   return (
     <Router>
-      <DashLoggedOut path="/app" fullName={fullName} />
+      <DashLoggedOut path="/app" fullName={full_name} />
     </Router>
   );
 };

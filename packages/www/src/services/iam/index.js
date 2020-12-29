@@ -3,13 +3,14 @@ const netlifyIdentity = require('netlify-identity-widget');
 const handler = {
   __hold_user__: {},
   getUserFullName: (user) => {
-    return user ? user.user_metadata.full_name : null;
+    return user && user.user_metadata ? user.user_metadata.full_name : null;
   },
   get: function (target, prop, receiver) {
     if (prop === 'init') {
       console.log('init iam service');
     } else if (prop === 'login') {
-      this.__hold_user__ = user;
+      console.log(prop);
+      this.__hold_user__ = prop.user;
     } else if (prop === 'logout') {
       this.__hold_user__ = {};
     } else if (prop === 'getUserFullName') {

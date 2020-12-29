@@ -7,7 +7,7 @@ import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 
 export default () => {
   const user = iam.currentUser();
-  let full_name = iam.getUserFullName();
+  let full_name = iam.getUserFullName;
   console.log({ full_name });
 
   return (
