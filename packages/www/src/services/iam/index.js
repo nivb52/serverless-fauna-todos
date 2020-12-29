@@ -12,7 +12,7 @@ const handler = {
     } else if (prop === 'logout') {
     } else if (prop === 'getUserFullName') {
       const user = target.currentUser();
-      console.log(target);
+      console.log(user);
 
       return this.getUserFullName(user);
     }
