@@ -14,7 +14,8 @@ const useStore = create((set, get) => ({
       }
     }),
   getUserFullName: () => {
-    return get().user.user_metadata.full_name;
+    console.log('getUserFullName');
+    return get().user?.user_metadata?.full_name;
   },
   todos: [],
   addTodo: (todo) => set((state) => ({ todos: state.todos.push(todo) })),

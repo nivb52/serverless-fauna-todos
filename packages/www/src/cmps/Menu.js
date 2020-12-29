@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Flex, NavLink } from 'theme-ui';
 import { Link } from 'gatsby';
 import iam from '../services/iam';
@@ -6,8 +6,14 @@ import useStore from '../store';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 
 export default () => {
-  const user = useStore.subscribe((console.log, (state) => state.user));
-  const full_name = iam.getUserFullName;
+  const [userFullName, setUserFullName] = useState();
+  const subscribeUser = useStore.subscribe(
+    (setUserFullName, (state) => state.getUserFullName)
+  );
+  const user = iam.currentUser();
+  const full_name = userFullName;
+  subscribeUser();
+  console.log({ user });
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>

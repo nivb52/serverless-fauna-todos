@@ -9,10 +9,9 @@ const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
   useUser();
   const [user, setUser] = useState();
-
-  let store_user = useStore.subscribe((setUser, (state) => state.user));
+  let subscribeUser = useStore.subscribe((setUser, (state) => state.user));
   const fullName = iam.getUserFullName;
-  console.log({ store_user });
+  subscribeUser();
   console.log({ user });
 
   if (!user) {
