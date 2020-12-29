@@ -52,14 +52,14 @@ const App = ({ children }) => {
   if (!user) {
     return (
       <Router>
-        <DashLoggedOut path="/app" fullName={fullName} />
+        <Dash path="/app" fullName={fullName} />
       </Router>
     );
   }
 
   return (
     <Router>
-      <Dash path="/app" fullName={fullName} />
+      <DashLoggedOut path="/app" fullName={fullName} />
     </Router>
   );
 };
