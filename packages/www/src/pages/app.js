@@ -9,7 +9,7 @@ const App = ({ children }) => {
   useUser();
   const user = useStore.subscribe((console.log, (state) => state.user));
   const fullName = iam.getUserFullName;
-  const Heading = <Heading as="h1">Get Stuff Done</Heading>;
+  //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
 
   if (!user) {
     return (
