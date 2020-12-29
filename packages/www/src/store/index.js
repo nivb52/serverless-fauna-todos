@@ -5,7 +5,6 @@ const useStore = create((set, get) => ({
   user: {},
   setUser: (user) =>
     set((state) => {
-      console.log(user);
       state.user = user;
     }),
   resetUser: () =>
@@ -14,8 +13,8 @@ const useStore = create((set, get) => ({
       }
     }),
   getUserFullName: () => {
-    console.log('getUserFullName');
-    return get().user?.user_metadata?.full_name;
+    console.log('getUserFullName Store');
+    return get().user.getUserData();
   },
   todos: [],
   addTodo: (todo) => set((state) => ({ todos: state.todos.push(todo) })),

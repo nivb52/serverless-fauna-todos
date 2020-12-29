@@ -12,7 +12,7 @@ const App = ({ children }) => {
   let subscribeUser = useStore.subscribe((setUser, (state) => state.user));
   const fullName = iam.getUserFullName;
   subscribeUser();
-  console.log({ user });
+  console.log('App', { user });
 
   if (!user) {
     return (

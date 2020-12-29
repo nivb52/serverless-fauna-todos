@@ -2,8 +2,7 @@ const netlifyIdentity = require('netlify-identity-widget');
 
 const handler = {
   getUserFullName: (user) => {
-    console.log(user);
-    return user?.user_metadata?.full_name;
+    return user.getUserData();
   },
   get: function (target, prop, receiver) {
     if (prop === 'init') {
@@ -12,8 +11,7 @@ const handler = {
     } else if (prop === 'logout') {
     } else if (prop === 'getUserFullName') {
       const user = target.currentUser();
-      console.log(user);
-
+      console.log('getUserFullName Proxy');
       return this.getUserFullName(user);
     }
     return Reflect.get(...arguments);
