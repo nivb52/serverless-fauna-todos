@@ -2,7 +2,7 @@ const netlifyIdentity = require('netlify-identity-widget');
 
 const handler = {
   getUserFullName: (user) => {
-    return user.getUserData();
+    return user ? user.getUserData() : null;
   },
   get: function (target, prop, receiver) {
     if (prop === 'init') {
