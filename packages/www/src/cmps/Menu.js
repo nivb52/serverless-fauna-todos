@@ -11,11 +11,11 @@ export default () => {
     (setUserFullName, (state) => state.getUserFullName)
   );
   const user = iam.currentUser();
-  const full_name = userFullName;
+  let full_name = userFullName;
   subscribeUser();
   console.log({ user });
-  console.log({ useStore: useStore.user });
-
+  console.log({ userFullName });
+  if (full_name) full_name = iam.getUserFullName;
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
       <Flex as="nav">
