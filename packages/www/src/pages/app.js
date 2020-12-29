@@ -8,7 +8,7 @@ import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
   useUser();
-  [user, setUser] = useState;
+  [user, setUser] = useState();
 
   let store_user = useStore.subscribe((setUser, (state) => state.user));
   const fullName = iam.getUserFullName;
