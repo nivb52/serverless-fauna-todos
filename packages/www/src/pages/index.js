@@ -8,9 +8,11 @@ export default (props) => {
 
   return (
     <Container>
-      <Menu></Menu>
       <Flex sx={{ flexDirection: 'column', padding: 3 }}>
-        <Heading as="h1"> Getting Staff Done</Heading>
+        <Menu></Menu>
+        <Heading as="h1" sx={{ textAlign: 'center' }}>
+          Getting Staff Done
+        </Heading>
       </Flex>
     </Container>
   );
