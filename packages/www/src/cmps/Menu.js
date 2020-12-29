@@ -6,17 +6,10 @@ import useStore from '../store';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 
 export default () => {
-  const [userFullName, setUserFullName] = useState();
-  const subscribeUser = useStore.subscribe(
-    (setUserFullName, (state) => state.getUserFullName)
-  );
   const user = iam.currentUser();
-  let full_name = iam.userFullName;
-  subscribeUser();
-  console.log({ user });
+  let full_name = iam.getUserFullName();
   console.log({ full_name });
-  if (full_name) full_name = iam.getUserFullName;
-  console.log({ full_name });
+
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
       <Flex as="nav">
