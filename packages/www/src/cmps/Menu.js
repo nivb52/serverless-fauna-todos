@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Flex, NavLink } from 'theme-ui';
 import { Link } from 'gatsby';
 import iam from '../services/iam';
-import useStore from '../store';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 
 export default () => {

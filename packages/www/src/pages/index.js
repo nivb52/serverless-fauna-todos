@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Container, Flex, Heading, Button } from 'theme-ui';
+import React from 'react';
+import { Container, Flex, Heading } from 'theme-ui';
 import Menu from '../cmps/Menu';
 import useUser from '../hooks/useIam';
 
