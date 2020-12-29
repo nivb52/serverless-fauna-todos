@@ -21,8 +21,8 @@ const handler = {
     return Reflect.get(...arguments);
   },
 };
-netlifyIdentity.init({});
-netlifyIdentity.on('init', (user) => (handler.__hold_user__ = user));
-
 const iam = new Proxy(netlifyIdentity, handler);
+iam.on('init', (user) => (handler.__hold_user__ = user));
+iam.init({});
+
 export default iam;

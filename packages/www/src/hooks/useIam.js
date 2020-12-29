@@ -7,7 +7,6 @@ export default function useUser() {
   const storeLogout = useStore((state) => state.setUser);
 
   React.useEffect(() => {
-    iam.init({});
     iam.on('init', (user) => storeLogin(user || {}));
     iam.on('login', (user) => {
       iam.close();
