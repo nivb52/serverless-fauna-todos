@@ -1,6 +1,6 @@
 /* eslint-disable */
-import create from 'zustand';
-// @todo set store as vanila
+import create from 'zustand/vanilla';
+
 const useStore = create((set, get) => ({
   user: {},
   setUser: (user) =>
@@ -14,7 +14,7 @@ const useStore = create((set, get) => ({
     }),
   getUserFullName: () => {
     console.log('getUserFullName Store');
-    return get().user.getUserData();
+    // return get().user.getCurrentUser();
   },
   todos: [],
   addTodo: (todo) => set((state) => ({ todos: state.todos.push(todo) })),
