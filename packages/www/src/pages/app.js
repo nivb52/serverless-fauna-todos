@@ -9,10 +9,8 @@ const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
   useUser();
   let is_user;
-  const unsub_user = useStore.subscribe(
-    (user) => (is_user = !!state.user),
-    (state) => state.user
-  );
+  const listenerIsUser = (user) => (is_user = !!user);
+  const unsub_user = useStore.subscribe(listenerIsUser, (state) => state.user);
   let full_name = unsub_user ? unsub_user : '';
   // console.log(full_name);
 
