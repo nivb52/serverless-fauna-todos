@@ -1,36 +1,33 @@
-const netlifyIdentity = require('netlify-identity-widget');
-import useStore from '../store';
-const { setUser, resetUser } = useStore();
+import useStore from '../../store';
 
-// const storeLogin = (user) => setUser(user);
-// const storeLogout = () => resetUser();
+const netlifyIdentity = require('netlify-identity-widget');
+console.log(useStore);
 
 const handler = {
   getUserFullName: () => {
     let user = this.getCurrentUser();
     return user && user.user_metadata ? user.user_metadata.full_name : null;
   },
-  isLoggedIn: () => {
-    return !!this.getCurrentUser();
+  isLoggedIn: (target) => {
+    return !!target.getCurrentUser();
   },
   get: function (target, prop, receiver) {
     if (prop === 'init') {
       console.log('init iam service');
-    } else if (prop === 'getUserFullName') {
-      console.log('getUserFullName Proxy');
-      return this.getUserFullName();
     } else if (prop === 'isLoggedIn') {
-      console.log('isLoggedIn Proxy');
-      return this.isLoggedIn();
+      this.isLoggedIn(target);
     }
     return Reflect.get(...arguments);
   },
 };
 const iam = new Proxy(netlifyIdentity, handler);
+const { setUser, resetUser } = useStore.getState();
+
 iam.on('init', (user) => setUser(user));
 iam.on('login', (user) => {
-  iam.close();
+  console.log('login iam service');
   setUser(user);
+  iam.close();
 });
 iam.on('logout', () => resetUser());
 

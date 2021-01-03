@@ -5,9 +5,10 @@ import iam from '../services/iam';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 
 export default () => {
-  const user = iam.currentUser();
-  let full_name = iam.getUserFullName;
-  console.log({ full_name });
+  const user = '';
+  let full_name = '';
+  // console.log({ full_name });
+  // MAKE AN OBSERVABLE
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
