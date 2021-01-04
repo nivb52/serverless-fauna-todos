@@ -16,7 +16,6 @@ const { setState } = store;
 iam.on('init', (user) => {
   const current_user = user;
   setState((set) => {
-    console.log('user', current_user);
     set.setUser(current_user);
   });
 });

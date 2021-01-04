@@ -3,7 +3,7 @@ import { Router } from '@reach/router';
 import useUser from '../hooks/useIam';
 import store from '../store';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
-const { subscribe } = store;
+import { isNotEmpty } from '../services/utills';
 
 const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
@@ -13,15 +13,20 @@ const App = ({ children }) => {
   let [fullName, setFullName] = useState('');
 
   const listenerIsUser = (user, previousUser) => {
-    console.log(user);
-    setIsUser(!!user);
+    console.log('app: ', user);
+    setIsUser(isNotEmpty(user));
     setFullName(
       user && user.hasOwnProperty('user_metadata')
         ? user.user_metadata.full_name
         : null
     );
   };
-  const unsub_user = store.subscribe(listenerIsUser, (state) => state.user);
+  const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
+  useEffect(() => {
+    return () => {
+      unsubUser();
+    };
+  });
 
   if (!isUser) {
     return (

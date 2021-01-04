@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import iam from '../services/iam';
 
 export default function useUser() {
