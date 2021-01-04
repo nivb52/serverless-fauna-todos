@@ -1,23 +1,21 @@
 /* eslint-disable */
 import create from 'zustand/vanilla';
 
-const useStore = create((set, get) => ({
+const store = create((set, get) => ({
   user: {},
-  setUser: (user) =>
-    set((state) => {
-      state.user = user;
-    }),
-  resetUser: () =>
-    set(() => {
-      user: {
-      }
-    }),
+  setUser: (user) => {
+    set((state) => (state.user = user));
+  },
+  resetUser: () => {
+    set((state) => (state.user = {}));
+  },
+
   getUserFullName: () => {
     console.log('getUserFullName Store');
-    let is_user = get().user;
-    let user = isuser ? get().user.getCurrentUser() : null;
+    let user = get().user;
     return user && user.user_metadata ? user.user_metadata.full_name : null;
   },
+
   todos: [],
   addTodo: (todo) => set((state) => ({ todos: state.todos.push(todo) })),
   resetTodos: () => set({ todos: [] }),
@@ -28,4 +26,4 @@ const useStore = create((set, get) => ({
     }),
 }));
 
-export default useStore;
+export default store;

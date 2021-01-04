@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Router } from '@reach/router';
 import useUser from '../hooks/useIam';
-import useStore from '../store';
+import store from '../store';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
-const { subscribe } = useStore;
+const { subscribe } = store;
 
 const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
-  useUser();
-  let is_user;
-  const listenerIsUser = (user) => (is_user = !!user);
-  const unsub_user = useStore.subscribe(listenerIsUser, (state) => state.user);
-  let full_name = unsub_user ? unsub_user : '';
-  // console.log(full_name);
 
-  if (!is_user) {
+  useUser();
+  let [isUser, setIsUser] = useState(false);
+  let [fullName, setFullName] = useState('');
+
+  const listenerIsUser = (user, previousUser) => {
+    setIsUser(!!user);
+    setFullName(
+      user && user.hasOwnProperty('user_metadata')
+        ? user.user_metadata.full_name
+        : null
+    );
+  };
+  const unsub_user = store.subscribe(listenerIsUser, (state) => state.user);
+
+  if (!isUser) {
     return (
       <Router>
         <DashLogin path="/app" />
@@ -24,7 +32,7 @@ const App = ({ children }) => {
 
   return (
     <Router>
-      <DashLoggedOut path="/app" fullName={full_name} />
+      <DashLoggedOut path="/app" fullName={fullName} />
     </Router>
   );
 };

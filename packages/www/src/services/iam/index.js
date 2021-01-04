@@ -1,34 +1,37 @@
-import useStore from '../../store';
-
+import store from '../../store';
 const netlifyIdentity = require('netlify-identity-widget');
-console.log(useStore);
 
 const handler = {
-  getUserFullName: () => {
-    let user = this.getCurrentUser();
-    return user && user.user_metadata ? user.user_metadata.full_name : null;
-  },
-  isLoggedIn: (target) => {
-    return !!target.getCurrentUser();
-  },
   get: function (target, prop, receiver) {
     if (prop === 'init') {
-      console.log('init iam service');
-    } else if (prop === 'isLoggedIn') {
-      this.isLoggedIn(target);
+      console.log('init iam service'); //, ...arguments);
     }
     return Reflect.get(...arguments);
   },
 };
-const iam = new Proxy(netlifyIdentity, handler);
-const { setUser, resetUser } = useStore.getState();
 
-iam.on('init', (user) => setUser(user));
+const iam = new Proxy(netlifyIdentity, handler);
+const { setState } = store;
+
+iam.on('init', (user) => {
+  const current_user = user;
+  setState((set) => {
+    console.log('user', current_user);
+    set.setUser(current_user);
+  });
+});
 iam.on('login', (user) => {
-  console.log('login iam service');
-  setUser(user);
+  setState((set) => {
+    console.log('set', set);
+    console.log('user', user);
+    set.setUser(user);
+  });
   iam.close();
 });
-iam.on('logout', () => resetUser());
+iam.on('logout', () =>
+  setState((set) => {
+    set.resetUser();
+  })
+);
 
 export default iam;
