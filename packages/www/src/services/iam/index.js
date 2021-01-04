@@ -22,8 +22,6 @@ iam.on('init', (user) => {
 });
 iam.on('login', (user) => {
   setState((set) => {
-    console.log('set', set);
-    console.log('user', user);
     set.setUser(user);
   });
   iam.close();

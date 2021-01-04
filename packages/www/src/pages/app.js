@@ -13,6 +13,7 @@ const App = ({ children }) => {
   let [fullName, setFullName] = useState('');
 
   const listenerIsUser = (user, previousUser) => {
+    console.log(user);
     setIsUser(!!user);
     setFullName(
       user && user.hasOwnProperty('user_metadata')

@@ -1,8 +1,12 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import iam from '../services/iam';
 
 export default function useUser() {
-  React.useEffect(() => {
+  // const [user, setUser] = useState({});
+
+  useEffect(() => {
     iam.init({});
   });
+
+  // return user;
 }
