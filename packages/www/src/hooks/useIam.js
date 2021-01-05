@@ -10,7 +10,7 @@ export default function useUser() {
       iam.init({});
       setIsInit(true);
     }
-  });
+  }, [is_init]);
 
   // return user;
 }
