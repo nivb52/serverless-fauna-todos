@@ -25,7 +25,7 @@ export default () => {
     return () => {
       unsubUser();
     };
-  });
+  }, [fullName]);
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>

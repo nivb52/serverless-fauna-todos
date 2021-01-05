@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Router } from '@reach/router';
 import useUser from '../hooks/useIam';
 import store from '../store';
-import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 import { isNotEmpty } from '../services/utills';
+
+import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
+import Menu from '../cmps/Menu';
 
 const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
@@ -26,21 +28,23 @@ const App = ({ children }) => {
     return () => {
       unsubUser();
     };
-  });
+  }, [fullName]);
 
-  if (!isUser) {
-    return (
-      <Router>
-        <DashLogin path="/app" />
-      </Router>
-    );
-  }
+  // if (!isUser) {
+  //   return (
+  //     <Router>
+  //       <DashLogin path="/app" />
+  //     </Router>
+  //   );
+  // }
 
-  return (
-    <Router>
-      <DashLoggedOut path="/app" fullName={fullName} />
-    </Router>
-  );
+  // return (
+  //   <Router>
+  //     <DashLoggedOut path="/app" fullName={fullName} />
+  //   </Router>
+  // );
+
+  return <Menu></Menu>;
 };
 
 export default App;

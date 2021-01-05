@@ -4,7 +4,7 @@ const handler = {
   is_init: false,
   get: function (target, prop, receiver) {
     if (prop === 'init') {
-      console.log(this.is_init, 'init iam service'); //, ...arguments);
+      console.log(this.is_init ? 'iam inited already' : 'init iam service'); //, ...arguments);
       if (this.is_init) return;
       else this.is_init = true;
     }
@@ -16,10 +16,10 @@ const iam = new Proxy(netlifyIdentity, handler);
 const { setState } = store;
 
 iam.on('init', (user) => {
-  const current_user = user;
-  setState((set) => {
-    set.setUser(current_user);
-  });
+  if (user)
+    setState((set) => {
+      set.setUser(user);
+    });
 });
 iam.on('login', (user) => {
   setState((set) => {
