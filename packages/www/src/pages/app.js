@@ -20,9 +20,9 @@ const App = ({ children }) => {
         : null
     );
   };
+  useUser();
   const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
   useEffect(() => {
-    useUser();
     return () => {
       unsubUser();
     };
