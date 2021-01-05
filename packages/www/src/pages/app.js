@@ -8,7 +8,6 @@ import { isNotEmpty } from '../services/utills';
 const App = ({ children }) => {
   //   const Heading = `<Heading as="h1">Get Stuff Done</Heading>;`
 
-  useUser();
   let [isUser, setIsUser] = useState(false);
   let [fullName, setFullName] = useState('');
 
@@ -23,6 +22,7 @@ const App = ({ children }) => {
   };
   const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
   useEffect(() => {
+    useUser();
     return () => {
       unsubUser();
     };

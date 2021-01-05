@@ -2,10 +2,14 @@ import { useEffect } from 'react';
 import iam from '../services/iam';
 
 export default function useUser() {
+  const [is_init, setIsInit] = useState(false);
   // const [user, setUser] = useState({});
 
   useEffect(() => {
-    iam.init({});
+    if (!is_init) {
+      iam.init({});
+      setIsInit(true);
+    }
   });
 
   // return user;

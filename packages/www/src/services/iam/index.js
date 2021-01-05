@@ -1,6 +1,5 @@
 import store from '../../store';
 const netlifyIdentity = require('netlify-identity-widget');
-
 const handler = {
   get: function (target, prop, receiver) {
     if (prop === 'init') {
