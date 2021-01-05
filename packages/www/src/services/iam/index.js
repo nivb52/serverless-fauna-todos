@@ -1,9 +1,12 @@
 import store from '../../store';
 const netlifyIdentity = require('netlify-identity-widget');
 const handler = {
+  is_init: false,
   get: function (target, prop, receiver) {
     if (prop === 'init') {
-      console.log('init iam service'); //, ...arguments);
+      console.log(this.is_init, 'init iam service'); //, ...arguments);
+      if (this.is_init) return;
+      else this.is_init = true;
     }
     return Reflect.get(...arguments);
   },
