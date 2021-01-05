@@ -4,8 +4,8 @@ const handler = {
   is_init: false,
   get: function (target, prop, receiver) {
     if (prop === 'init') {
-      console.log(this.is_init ? 'iam inited already' : 'init iam service'); //, ...arguments);
-      if (this.is_init) return;
+      console.log(this.is_init ? 'iam connected already' : 'init iam service'); //, ...arguments);
+      if (this.is_init) return null;
       else this.is_init = true;
     }
     return Reflect.get(...arguments);
