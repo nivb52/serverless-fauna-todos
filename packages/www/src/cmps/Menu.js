@@ -11,6 +11,7 @@ import useUser from '../hooks/useIam';
 export default () => {
   let [isUser, setIsUser] = useState();
   let [fullName, setFullName] = useState('');
+  const store_user = store.getState().user;
 
   const listenerIsUser = (user, previousUser) => {
     console.log('listen user ', user);
@@ -23,14 +24,12 @@ export default () => {
       );
     }
   };
+  const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
 
   useUser();
-  const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
   useEffect(() => {
-    return () => {
-      unsubUser();
-    };
-  }, [is_user, fullName, unsubUser]);
+    listenerIsUser(store_user);
+  }, [isUser]);
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>

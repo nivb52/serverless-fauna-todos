@@ -23,10 +23,11 @@ iam.on('login', (user) => {
   });
   iam.close();
 });
-iam.on('logout', () =>
+iam.on('logout', () => {
   setState((set) => {
     set.resetUser();
-  })
-);
+  });
+  iam.close();
+});
 
 export default iam;
