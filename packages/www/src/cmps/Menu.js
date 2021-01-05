@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, NavLink } from 'theme-ui';
 import { Link } from 'gatsby';
+
 import store from '../store';
 import iam from '../services/iam';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
@@ -14,11 +15,13 @@ export default () => {
   const listenerIsUser = (user, previousUser) => {
     console.log('listen user ', user);
     setIsUser(isNotEmpty(user));
-    setFullName(
-      user && user.hasOwnProperty('user_metadata')
-        ? user.user_metadata.full_name
-        : null
-    );
+    if (user) {
+      setFullName(
+        user.hasOwnProperty('user_metadata')
+          ? user.user_metadata.full_name
+          : null
+      );
+    }
   };
 
   useUser();
@@ -27,7 +30,7 @@ export default () => {
     return () => {
       unsubUser();
     };
-  }, [isUser]);
+  }, [is_user, fullName, unsubUser]);
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
@@ -51,7 +54,6 @@ export default () => {
         {isUser && <DashLoggedOut fullName={fullName} />}
         {!isUser && (
           <DashLogin
-            fullName={fullName}
             onClick={() => {
               iam.open();
             }}
