@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // import { Router } from '@reach/router';
-import store from '../store';
+// import store from '../store';
 import Menu from '../cmps/Menu';
 
 const App = ({ children }) => {

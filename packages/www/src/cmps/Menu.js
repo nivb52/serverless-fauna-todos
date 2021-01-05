@@ -5,9 +5,10 @@ import store from '../store';
 import iam from '../services/iam';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
 import { isNotEmpty } from '../services/utills';
+import useUser from '../hooks/useIam';
 
 export default () => {
-  let [isUser, setIsUser] = useState(false);
+  let [isUser, setIsUser] = useState();
   let [fullName, setFullName] = useState('');
 
   const listenerIsUser = (user, previousUser) => {
@@ -20,12 +21,13 @@ export default () => {
     );
   };
 
+  useUser();
   const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
   useEffect(() => {
     return () => {
       unsubUser();
     };
-  }, [fullName]);
+  }, [isUser]);
 
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
