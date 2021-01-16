@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import iam from '../services/iam';
 
-export default function useUser() {
+export default function useUser(user) {
   useEffect(() => {
     try {
       iam.init({});
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
   }, []);
 }

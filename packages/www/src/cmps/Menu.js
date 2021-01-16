@@ -2,35 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Flex, NavLink } from 'theme-ui';
 import { Link } from 'gatsby';
 
-import store from '../store';
 import iam from '../services/iam';
 import { DashLoggedOut, DashLogin } from '../cmps/LoginLogout';
-import { isNotEmpty } from '../services/utills';
-import useUser from '../hooks/useIam';
 
-export default () => {
-  let [isUser, setIsUser] = useState();
-  let [fullName, setFullName] = useState('');
-  const store_user = store.getState().user;
-
-  const listenerIsUser = (user, previousUser) => {
-    console.log('listen user ', user);
-    setIsUser(isNotEmpty(user));
-    if (user) {
-      setFullName(
-        user.hasOwnProperty('user_metadata')
-          ? user.user_metadata.full_name
-          : null
-      );
-    }
-  };
-  const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
-
-  useUser();
-  useEffect(() => {
-    listenerIsUser(store_user);
-  }, [isUser]);
-
+export default ({ isUser, fullName }) => {
   return (
     <Flex as="header" sx={{ justifyContent: 'space-between' }}>
       <Flex as="nav">
