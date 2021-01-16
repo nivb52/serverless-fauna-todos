@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Flex, NavLink } from 'theme-ui';
 import { Link } from 'gatsby';
 

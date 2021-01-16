@@ -4,27 +4,31 @@ import useIam from './useIam';
 import { isNotEmpty } from '../services/utills';
 
 const store_user = store.getState().user;
+const store_user_full_name = store.getState().getUserFullName();
 
 export default function useUser(user) {
-  let [fullName, setFullName] = useState('');
-  let [isUser, setIsUser] = useState('');
-  useIam();
-  useEffect(() => {
-    listenerIsUser(store_user);
-  }, []);
+  let [fullName, setFullName] = useState(store_user_full_name);
+  let [isUser, setIsUser] = useState(isNotEmpty(store_user));
 
-  const listenerIsUser = (user, previousUser) => {
-    console.log('listen user ', user);
-    setIsUser(isNotEmpty(user));
-    if (user) {
+  const listenerIsUser = (store_user, previousUser) => {
+    console.log('listen user ', store_user);
+    setIsUser(isNotEmpty(store_user));
+    if (store_user) {
       setFullName(
-        user.hasOwnProperty('user_metadata')
-          ? user.user_metadata.full_name
+        store_user.hasOwnProperty('user_metadata')
+          ? store_user.user_metadata.full_name
           : null
       );
     }
   };
-  const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
 
-  return fullName;
+  useIam();
+  const unsubUser = store.subscribe(listenerIsUser, (state) => state.user);
+  useEffect(() => {
+    listenerIsUser(store_user);
+    return unsubUser;
+  }, [fullName, unsubUser]);
+
+  console.log(fullName);
+  return isUser ? fullName : '';
 }
