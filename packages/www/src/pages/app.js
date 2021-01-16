@@ -3,9 +3,11 @@ import React from 'react';
 // import store from '../store';
 import Menu from '../cmps/Menu';
 import useUser from '../hooks/useUser';
+import useIam from '../hooks/useIam';
 import { Flex, Heading } from 'theme-ui';
 
 const App = ({ children }) => {
+  useIam();
   const { isUser, fullName } = useUser();
   if (!isUser)
     return (
