@@ -1,5 +1,19 @@
-import useUser from '../../hooks/useUser';
+const { isNotEmpty } = require('../utills');
 const netlifyIdentity = require('netlify-identity-widget');
+
+export function user() {
+  let curr_user = {};
+  return {
+    setUser: (user) => (curr_user = user),
+    getUser: () => curr_user,
+    getIsUser: () => isNotEmpty(curr_user),
+    getUserFullName: () => {
+      const user = console.log(curr_user);
+      return user && user.user_metadata ? user.user_metadata.full_name : null;
+    },
+  };
+}
+
 const handler = {
   is_init: false,
   get: function (target, prop, receiver) {
@@ -15,18 +29,18 @@ const handler = {
 };
 
 const iam = new Proxy(netlifyIdentity, handler);
-
+const { setUser } = user();
 iam.on('init', (user) => {
-  useUser(user);
+  setUser(user);
 });
 
 iam.on('login', (user) => {
-  useUser(user);
+  setUser(user);
   iam.close();
 });
 
 iam.on('logout', () => {
-  useUser();
+  setUser();
   iam.close();
 });
 

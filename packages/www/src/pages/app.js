@@ -2,13 +2,16 @@ import React from 'react';
 // import { Router } from '@reach/router';
 // import store from '../store';
 import Menu from '../cmps/Menu';
-import useUser from '../hooks/useUser';
 import useIam from '../hooks/useIam';
 import { Flex, Heading } from 'theme-ui';
+import { user } from '../services/iam';
 
 const App = ({ children }) => {
   useIam();
-  const { isUser, fullName } = useUser();
+  const { getIsUser, getUserFullName } = user();
+  const isUser = getIsUser();
+  const fullName = getUserFullName();
+
   if (!isUser)
     return (
       <Flex sx={{ flexDirection: 'column', padding: 3 }}>
