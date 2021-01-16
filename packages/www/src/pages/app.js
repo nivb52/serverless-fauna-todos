@@ -6,8 +6,8 @@ import useUser from '../hooks/useUser';
 import { Flex, Heading } from 'theme-ui';
 
 const App = ({ children }) => {
-  const fullName = useUser();
-  if (!fullName)
+  const { isUser, fullName } = useUser();
+  if (!isUser)
     return (
       <Flex sx={{ flexDirection: 'column', padding: 3 }}>
         <Heading as="h1" sx={{ textAlign: 'center' }}>

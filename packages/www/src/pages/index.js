@@ -4,11 +4,11 @@ import Menu from '../cmps/Menu';
 import useUser from '../hooks/useUser';
 
 export default (props) => {
-  const fullName = useUser();
+  const { isUser, fullName } = useUser();
   return (
     <Container>
       <Flex sx={{ flexDirection: 'column', padding: 3 }}>
-        <Menu isUser={!!fullName} fullName={fullName}></Menu>
+        <Menu isUser={isUser} fullName={fullName}></Menu>
         <Heading as="h1" sx={{ textAlign: 'center' }}>
           Getting Staff Done
         </Heading>

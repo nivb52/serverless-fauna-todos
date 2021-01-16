@@ -1,4 +1,4 @@
-import store from '../../store';
+import useUser from '../../hooks/useUser';
 const netlifyIdentity = require('netlify-identity-widget');
 const handler = {
   is_init: false,
@@ -7,7 +7,7 @@ const handler = {
       console.log(
         this.is_init ? 'iam already connected' : 'iam service started'
       ); //, ...arguments);
-      if (this.is_init) return () => ({});
+      // if (this.is_init) return () => (this.getCurrentUSer());
       this.is_init = true;
     }
     return Reflect.get(...arguments);
@@ -15,18 +15,18 @@ const handler = {
 };
 
 const iam = new Proxy(netlifyIdentity, handler);
-const { setState } = store;
+
+iam.on('init', (user) => {
+  useUser(user);
+});
 
 iam.on('login', (user) => {
-  setState((set) => {
-    set.setUser(user);
-  });
+  useUser(user);
   iam.close();
 });
+
 iam.on('logout', () => {
-  setState((set) => {
-    set.resetUser();
-  });
+  useUser();
   iam.close();
 });
 
