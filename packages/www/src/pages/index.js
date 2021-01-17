@@ -5,10 +5,11 @@ import { user } from '../services/iam';
 import useIam from '../hooks/useIam';
 
 export default (props) => {
-  useIam();
+  let iam = useIam();
   const { getIsUser, getUserFullName } = user();
   const isUser = getIsUser();
   const fullName = getUserFullName();
+  console.log(iam.getUserFullName);
   return (
     <Container>
       <Flex sx={{ flexDirection: 'column', padding: 3 }}>

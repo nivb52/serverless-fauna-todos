@@ -13,4 +13,5 @@ export default function useIam() {
       console.warn(error);
     }
   }, []);
+  return iam;
 }
