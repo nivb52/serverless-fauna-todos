@@ -7,10 +7,9 @@ import { Flex, Heading } from 'theme-ui';
 import { user } from '../services/iam';
 
 const App = ({ children }) => {
-  useIam();
-  const { getIsUser, getUserFullName } = user();
-  const isUser = getIsUser();
-  const fullName = getUserFullName();
+  let iam = useIam();
+  const isUser = iam.getIsUser;
+  const fullName = iam.getUserFullName;
 
   if (!isUser)
     return (
